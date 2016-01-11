@@ -1,0 +1,29 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const db = require('./database.js');
+
+// logger
+const morgan = require('morgan');
+
+// za app
+const app = express();
+const Router = express.Router();
+
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// define routes here
+Router.get('/', function(req, res) {
+  db.getBlogPosts(
+      function(data) {
+        res.json(data);
+      }
+  );
+});
+
+// let the app use the routes
+app.use('/api', Router);
+app.listen(8090);
+
+console.log('everything should be ok if u see this');
