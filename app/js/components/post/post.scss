@@ -1,0 +1,15 @@
+@import 'app/scss/settings/variables';
+
+.Post {
+  position: relative;
+}
+.Post-Title {
+  color: red;
+  font-family: $font-main;
+  font-size: $fs-xxxl;
+  font-weight: $fw-normal;
+}
+
+.Post-Body {
+
+}
