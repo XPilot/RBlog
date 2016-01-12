@@ -2,7 +2,12 @@
 @import 'lib/normalize';
 
 // settings
-@import 'settings/page';
+@import 'settings/colors';
+@import 'settings/variables';
+
+// layout
+@import 'ui/general';
+@import 'ui/layout';
 
 // tiny little helperhtml,
 body {
