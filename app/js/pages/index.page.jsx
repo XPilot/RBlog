@@ -14,31 +14,43 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(PostsActions, dispatch)
+    actions: bindActionCreators(PostsActions, dispatch),
   };
 }
 
 class IndexPage extends Component {
   static propTypes ={
     actions: PropTypes.object,
+    posts: PropTypes.arrayOf(PropTypes.object),
   }
 
   componentWillMount() {
     const { actions } = this.props;
-    actions.get();
+    actions.getAPIPosts();
   }
 
   renderPosts() {
+    const { posts } = this.props;
+    return posts.map((post, key) => {
+      const { id, title, lead, body } = post;
 
+      return (
+        <Post
+          key={key}
+          id={id}
+          title={title}
+          lead={lead}
+        >
+          {body}
+        </Post>
+      );
+    });
   }
 
   render() {
-    console.log('our props', this.props.posts);
     return (
       <div>
-        <Post>
-          This should e the post body
-        </Post>
+        {this.renderPosts()}
       </div>
     );
   }
