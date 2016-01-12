@@ -1,7 +1,8 @@
 export const POSTS = {
   GET: 'API_GET',
+  GET_SINGLE: 'LOCAL_GETSINGLE',
   PUT: 'API_PUT',
-  GET: 'API_DELETE',
+  DELETE: 'API_DELETE',
 };
 
-export const API_URL = 'http://localhost:8090/api/';
+export const API_URL = '//localhost:8090/api/';
