@@ -1,5 +1,8 @@
 #ignore dependencies
 /node_modules
 
+#ignore generated db
+/be/db/*.db
+
 #ignore build
 /public
