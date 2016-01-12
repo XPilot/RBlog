@@ -2,10 +2,14 @@ import fetch from 'isomorphic-fetch'
 
 import { POSTS } from '../constants/constants';
 
-export default function postsReducer(state = [], action) {
+const initialState = []
+
+export default function postsReducer(state = initialState, action) {
   switch (action.type) {
+
   case POSTS.GET:
-    return [1,2,3]
+    return action.payload;
+    
   default:
     return state;
   }
