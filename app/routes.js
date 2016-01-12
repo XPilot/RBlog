@@ -12,7 +12,7 @@ export default function routes() {
   return (
     <Route path="/" component={Layout}>
       <IndexRoute component={IndexPage} />
-      <Route path="/post" component={PostPage} />
+      <Route path="/post/:postId" component={PostPage} />
     </Route>
   );
 }
