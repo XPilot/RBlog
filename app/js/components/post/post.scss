@@ -1,15 +1,46 @@
+@import 'app/scss/settings/colors';
 @import 'app/scss/settings/variables';
 
 .Post {
   position: relative;
+
+  margin-bottom: 40px;
+
+  a {
+    text-decoration: none;
+  }
 }
 .Post-Title {
-  color: red;
+  margin: 0 0 40px;
+
+  color: $color-ebony-clay;
   font-family: $font-main;
   font-size: $fs-xxxl;
   font-weight: $fw-normal;
+  line-height: 1;
+
+  &:hover {
+    color: lighten($color-ebony-clay, 10);
+  }
+}
+
+.Post-Lead {
+  margin: 0 0 20px;
+
+  color: $color-grey;
+  font-family: $font-main;
+  font-size: $fs-xxl;
+  line-height: 1;
+
+  &:empty {
+    margin: 0;
+  }
 }
 
 .Post-Body {
+  color: $color-dark;
 
+  font-family: $font-main;
+  font-size: $fs-l;
+  line-height: $fs-l + 10px;
 }
