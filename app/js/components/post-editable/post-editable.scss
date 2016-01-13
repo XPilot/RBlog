@@ -1,0 +1,87 @@
+@import 'app/scss/settings/colors';
+@import 'app/scss/settings/variables';
+
+.PostEditable {
+  position: relative;
+
+  padding: 20px;
+  margin-bottom: 40px;
+
+  background: $color-white;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.15);
+
+  box-sizing: border-box;
+
+  a {
+    text-decoration: none;
+  }
+
+  label {
+    margin: 20px 0 5px 0;
+    padding: 0;
+
+    color: $color-grey;
+    font-size: $fs-l;
+    font-weight: $fw-normal;
+  }
+
+  hr {
+    height: 0;
+    margin: 0;
+    border-top: 1px solid rgba($color-grey, 0.3);
+  }
+}
+
+.PostEditable-Field {
+  width: 100%;
+
+  margin: 0 0 20px 0;
+  padding: 5px;
+
+  border: 1px solid transparent;
+  border-color: rgba($color-grey, 0.3);
+  outline: none;
+
+  color: $color-ebony-clay;
+  font-family: $font-main;
+  font-size: $fs-l;
+  font-weight: $fw-normal;
+  line-height: $fs-l;
+
+  &--textarea {
+    height: 200px;
+    max-height: 600px;
+    resize: vertical;
+  }
+
+  &:hover {
+    border-color: $color-picton-blue;
+  }
+}
+
+.PostEditable-Controls {
+  margin: 20px 0;
+
+  text-align: right;
+}
+
+.PostEditable-Control {
+  margin: 0 5px;
+
+  &--save {
+    background: $color-picton-blue;
+
+    &:hover {
+      background: lighten($color-picton-blue, 5);
+    }
+  }
+
+  &--cancel {
+    background: $color-old-brick;
+
+    &:hover {
+      background: lighten($color-old-brick, 5);
+    }
+  }
+}
