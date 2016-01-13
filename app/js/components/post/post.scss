@@ -4,10 +4,23 @@
 .Post {
   position: relative;
 
+  padding: 20px;
   margin-bottom: 40px;
+
+  background: $color-white;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.15);
+
+  box-sizing: border-box;
 
   a {
     text-decoration: none;
+  }
+
+  hr {
+    height: 0;
+    margin: 0;
+    border-top: 1px solid rgba($color-grey, 0.3);
   }
 }
 .Post-Title {
@@ -43,4 +56,30 @@
   font-family: $font-main;
   font-size: $fs-l;
   line-height: $fs-l + 10px;
+}
+
+.Post-Controls {
+  margin: 20px 0;
+
+  text-align: right;
+}
+
+.Post-Control {
+  margin: 0 5px;
+
+  &--edit {
+    background: $color-picton-blue;
+
+    &:hover {
+      background: lighten($color-picton-blue, 5);
+    }
+  }
+
+  &--delete {
+    background: $color-old-brick;
+
+    &:hover {
+      background: lighten($color-old-brick, 5);
+    }
+  }
 }
