@@ -32,7 +32,7 @@ class PostPage extends Component {
   renderPost(post) {
     const { body, lead, title } = post || {};
 
-    if(!post) {
+    if (!post) {
       return (<p className="PostPage-NotFound">Post not found!</p>);
     }
 
