@@ -8,6 +8,10 @@ export default function postsReducer(state = initialState, action) {
   switch (action.type) {
 
   case POSTS.GET_SINGLE: {
+    if (!action.payload) {
+      return null;
+    }
+
     return Object.assign({}, state, action.payload);
   }
 
