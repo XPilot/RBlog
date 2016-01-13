@@ -1,5 +1,5 @@
 import { POSTS } from '../constants/constants';
-import { fetchPosts } from '../lib/api';
+import { fetchPosts, fetchPost, editPost, deletePost } from '../lib/api';
 import { find } from 'lodash';
 
 function get(posts) {
@@ -16,6 +16,7 @@ function getSinglePost(post) {
   }
 }
 
+// async actions
 function getAPIPosts() {
   return dispatch => {
 
@@ -37,9 +38,12 @@ function fetchSinglePost(postId) {
     const {posts} = getState();
 
       if(!posts || !posts.length) {
-        console.log('Page has no posts in store! Will get post from server, hopefully...')
-        return null;
         // perform async operation to get data from server (TODO)
+        fetchPost(postId)
+          .then(response => response.json())
+          .then((data) => {
+            dispatch(getSinglePost(data));
+          });
       }
 
       const foundPost = find(posts, {"id": postId});
@@ -47,8 +51,26 @@ function fetchSinglePost(postId) {
   }
 }
 
+function editPostAction(postId) {
+  return {
+    type: POSTS.EDIT,
+    payload: postId,
+  }
+}
+
+function deletePostAction(postId) {
+  return (dispatch) => {
+    deletePost(postId)
+      .then(response => response.json())
+      .then((data) => {
+        dispatch(get(data));
+      })
+  }
+}
+
 export default {
-  get,
   getAPIPosts,
   fetchSinglePost,
+  editPostAction,
+  deletePostAction,
 }
