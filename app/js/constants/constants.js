@@ -1,7 +1,7 @@
 export const POSTS = {
   GET: 'API_GET',
   GET_SINGLE: 'LOCAL_GETSINGLE',
-  PUT: 'API_PUT',
+  EDIT: 'API_EDIT',
   DELETE: 'API_DELETE',
 };
 
