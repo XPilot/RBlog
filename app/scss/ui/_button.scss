@@ -1,0 +1,27 @@
+.Button {
+  margin: 0 15px;
+  padding: 12px 20px;
+
+  background: $color-silver-sand;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+
+  color: $color-white;
+  font-size: $fs-l;
+  font-weight: $fw-medium;
+
+  transition: background 350ms ease-out;
+
+  &:hover {
+    background: lighten($color-silver-sand, 5);
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
