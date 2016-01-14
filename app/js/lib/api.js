@@ -9,7 +9,26 @@ export function fetchPost(postId) {
   return fetch(`${API_URL}post/${postId}`);
 }
 
-export function editPost(postId) {
+export function createPost(post) {
+  return fetch(`${API_URL}post/`, {
+    method: 'post',
+    mode: 'cors',
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+    body: JSON.stringify(post),
+  });
+}
+
+export function updatePost(post) {
+  return fetch(`${API_URL}post/`, {
+    method: 'put',
+    mode: 'cors',
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+    body: JSON.stringify(post),
+  });
 }
 
 export function deletePost(postId) {
