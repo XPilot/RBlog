@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
 import cx from 'classnames';
 
 import './post-editable.scss';
@@ -14,13 +13,24 @@ class PostEditable extends Component {
     onPostCancel: PropTypes.func.isRequired,
   }
 
+  onPostSaveClick() {
+    const { onPostSave } = this.props;
+
+    const post = {
+      title: this.refs.title.value,
+      lead: this.refs.lead.value,
+      body: this.refs.body.value,
+    };
+
+    onPostSave(post);
+  }
+
   render() {
     const {
       className,
       children,
       lead,
       title,
-      onPostSave,
       onPostCancel,
     } = this.props;
 
@@ -32,23 +42,35 @@ class PostEditable extends Component {
       <div className={cx(postEditableClasses, className)}>
         <label>
           Title:
-          <input type="text" className="PostEditable-Title PostEditable-Field" defaultValue={title} />
+          <input
+            ref="title"
+            className="PostEditable-Title PostEditable-Field"
+            defaultValue={title}
+            type="text"
+          />
         </label>
 
         <label>
           Lead:
-        <input type="text" className="PostEditable-Lead PostEditable-Field" defaultValue={lead} />
+        <input
+          ref="lead"
+          className="PostEditable-Lead PostEditable-Field"
+          defaultValue={lead}
+          type="text"
+        />
         </label>
 
         <label>
           Article:
-        <textarea className="PostEditable-Body PostEditable-Field PostEditable-Field--textarea" defaultValue={children} />
+        <textarea
+          ref="body"
+          className="PostEditable-Body PostEditable-Field PostEditable-Field--textarea"
+          defaultValue={children}
+        />
         </label>
 
-        <hr />
-
         <div className="PostEditable-Controls">
-          <button className="PostEditable-Control PostEditable-Control--save Button" onClick={onPostSave}>Save changes</button>
+          <button className="PostEditable-Control PostEditable-Control--save Button" onClick={this.onPostSaveClick.bind(this)}>Save changes</button>
           <button className="PostEditable-Control PostEditable-Control--cancel Button" onClick={onPostCancel}>Cancel changes</button>
         </div>
       </div>
