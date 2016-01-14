@@ -31,6 +31,11 @@ class IndexPage extends Component {
     actions.getAPIPosts();
   }
 
+  onPostAdd() {
+    const { actions } = this.props;
+    actions.addPostAction();
+  }
+
   onEditPost(postId) {
     const { actions } = this.props;
     actions.editPostAction(postId);
@@ -41,15 +46,36 @@ class IndexPage extends Component {
     actions.deletePostAction(postId);
   }
 
-  onSavePost(postId) {
+  onSavePost(id, mode, post) {
     const { actions } = this.props;
-    actions.editPostCancelAction(postId);
+    const postData = post;
+    postData.id = id;
+
+    switch (mode) {
+      case 'add':
+        actions.createPostAction(postData);
+        break;
+      case 'edit':
+        actions.updatePostAction(postData);
+        break;
+      default:
+        break;
+    }
   }
 
-  onCancelPost(postId) {
+  onCancelPost(id, mode) {
     const { actions } = this.props;
-    console.log('Cancelling post');
-    // actions.deletePostAction(postId);
+
+    switch (mode) {
+      case 'add':
+        actions.addPostAction({});
+        break;
+      case 'edit':
+        actions.editPostAction(id);
+        break;
+      default:
+        break;
+    }
   }
 
   renderPosts() {
@@ -62,14 +88,14 @@ class IndexPage extends Component {
     return posts.map((post, key) => {
       const { id, title, lead, body, mode } = post;
 
-      if (mode && mode === 'edit') {
+      if (mode && (mode === 'edit' || mode === 'add')) {
         return (
           <PostEditable
             key={key}
             title={title}
             lead={lead}
-            onPostSave={this.onSavePost.bind(this, id)}
-            onPostCancel={this.onCancelPost.bind(this, id)}
+            onPostSave={this.onSavePost.bind(this, id, mode)}
+            onPostCancel={this.onCancelPost.bind(this, id, mode)}
           >
           {body}
         </PostEditable>
@@ -95,6 +121,9 @@ class IndexPage extends Component {
     return (
       <div>
         {this.renderPosts()}
+        <div className="Blog-Controls">
+          <button className="Button" onClick={this.onPostAdd.bind(this)}>Add new post</button>
+        </div>
       </div>
     );
   }
