@@ -1,5 +1,11 @@
 import { POSTS } from '../constants/constants';
-import { fetchPosts, fetchPost, editPost, deletePost } from '../lib/api';
+import {
+  fetchPosts,
+  fetchPost,
+  createPost,
+  updatePost,
+  deletePost
+} from '../lib/api';
 import { find } from 'lodash';
 
 function get(posts) {
@@ -15,6 +21,26 @@ function getSinglePost(post) {
     payload: post,
   }
 }
+
+function addPostAction(postContent) {
+  return {
+    type: POSTS.ADD,
+    payload: postContent,
+  }
+}
+
+function editPostAction(postId, postContent) {
+  console.log(postId, postContent);
+
+  return {
+    type: POSTS.EDIT,
+    payload: {
+      id: postId,
+      postContents: postContent || null,
+    },
+  }
+}
+
 
 // async actions
 function getAPIPosts() {
@@ -51,11 +77,32 @@ function fetchSinglePost(postId) {
   }
 }
 
-function editPostAction(postId) {
-  return {
-    type: POSTS.EDIT,
-    payload: postId,
-  }
+function createPostAction(post) {
+  return dispatch => {
+    createPost(post)
+      .then(response => response.json())
+      .then((data) => {
+        if(data === null) {
+          // handle errors at a later time
+        } else {
+          dispatch(addPostAction(data));
+        }
+      });
+  };
+}
+
+function updatePostAction(post) {
+  return dispatch => {
+    updatePost(post)
+      .then(response => response.json())
+      .then((data) => {
+        if(data === null) {
+          // handle errors at a later time
+        } else {
+          dispatch(editPostAction(data.id, data));
+        }
+      });
+  };
 }
 
 function deletePostAction(postId) {
@@ -71,6 +118,9 @@ function deletePostAction(postId) {
 export default {
   getAPIPosts,
   fetchSinglePost,
+  addPostAction,
   editPostAction,
+  createPostAction,
+  updatePostAction,
   deletePostAction,
 }
