@@ -5,6 +5,19 @@
   margin: 40px auto 0px;
 }
 
+.Blog-Controls {
+  text-align: center;
+
+  .Button {
+    width: 100%;
+    background: $color-picton-blue;
+
+    &:hover {
+      background: lighten($color-picton-blue, 5);
+    }
+  }
+}
+
 .Layout-Message {
   padding: 20px;
 
