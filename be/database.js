@@ -52,10 +52,26 @@ exports.getBlogPosts = function() {
   return db('posts').value();
 }
 
-exports.addBlogPost = function(postData) {
-  var newPost = postData;
+exports.addBlogPost = function(post) {
+  var newPost = post;
   newPost.id = uuid.v1();
-  return db('posts').push(newPost);
+  db('posts').push(newPost);
+
+  // we can also return the same parameter
+  // as we got in the function but we'll
+  // return a db entry instead
+
+  var query = db('posts')
+          .chain()
+          .where({'id': newPost.id})
+          .take(1)
+          .value();
+
+  if (!query.length) {
+    return null;
+  }
+
+  return query[0];
 }
 
 // get a single blog post
@@ -72,8 +88,18 @@ exports.getBlogPost = function(postId) {
   return query[0];
 }
 
-exports.editBlogPost = function(postId) {
+exports.updateBlogPost = function(post) {
+  var query = db('posts')
+                .chain()
+                .find({id: post.id})
+                .assign({
+                  title: post.title,
+                  lead: post.lead,
+                  body: post.body,
+                })
+                .value();
 
+  return query;
 }
 
 exports.deleteBlogPost = function(postId) {
