@@ -22,7 +22,7 @@ class PostPage extends Component {
     actions: PropTypes.object.isRequired,
     params: PropTypes.object.isRequired,
     post: PropTypes.object,
-  }
+  };
 
   componentWillMount() {
     const { actions, params } = this.props;

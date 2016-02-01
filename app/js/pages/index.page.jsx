@@ -24,7 +24,7 @@ class IndexPage extends Component {
   static propTypes ={
     actions: PropTypes.object,
     posts: PropTypes.arrayOf(PropTypes.object),
-  }
+  };
 
   componentWillMount() {
     const { actions } = this.props;

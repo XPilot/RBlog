@@ -11,7 +11,7 @@ class PostEditable extends Component {
     lead: PropTypes.node,
     onPostSave: PropTypes.func.isRequired,
     onPostCancel: PropTypes.func.isRequired,
-  }
+  };
 
   onPostSaveClick() {
     const { onPostSave } = this.props;

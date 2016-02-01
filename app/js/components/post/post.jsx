@@ -15,7 +15,7 @@ class Post extends Component {
     lead: PropTypes.node,
     onPostEdit: PropTypes.func.isRequired,
     onPostDelete: PropTypes.func.isRequired,
-  }
+  };
 
   render() {
     const {
